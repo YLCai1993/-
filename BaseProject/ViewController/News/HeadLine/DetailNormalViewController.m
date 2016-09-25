@@ -7,6 +7,7 @@
 //
 
 #import "DetailNormalViewController.h"
+#import "ScrollDisplayViewController.h"
 #import <UIImageView+WebCache.h>
 #import "AdsViewModel.h"
 
@@ -17,7 +18,7 @@
 @property(nonatomic,strong)UILabel *titleLabel;
 @property(nonatomic,strong)AdsViewModel *adsVm;
 @property(nonatomic,strong)UIScrollView *scrollView;
-
+@property(nonatomic,strong)ScrollDisplayViewController *sdVC;
 
 @end
 
@@ -146,6 +147,8 @@
     self.scrollView.contentSize = CGSizeMake(self.view.width, originX);
 }
 
-
-
 @end
+
+
+
+

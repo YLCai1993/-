@@ -12,7 +12,7 @@
 @implementation AdsModel
 
 +(NSDictionary *)replacedKeyFromPropertyName{
-    NSLog(@"调用Str:%@",adsStr);
+//    NSLog(@"调用Str:%@",adsStr);
     return @{
              @"classModel":adsStr
              };

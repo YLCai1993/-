@@ -42,6 +42,16 @@
 		F1C1BB191D90F57000014FE4 /* NormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C1BB181D90F57000014FE4 /* NormalCell.m */; };
 		F1C1BB1C1D90F59200014FE4 /* OnePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C1BB1B1D90F59200014FE4 /* OnePictureCell.m */; };
 		F1C1BB1F1D90F5A900014FE4 /* ThreePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C1BB1E1D90F5A900014FE4 /* ThreePictureCell.m */; };
+		F1C8869C1D974E4500E5F87C /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C8869A1D974E4500E5F87C /* ShowViewController.m */; };
+		F1C886A31D976EA600E5F87C /* VideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886A21D976EA600E5F87C /* VideoPlayerController.m */; };
+		F1C886A61D976EBA00E5F87C /* PlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886A51D976EBA00E5F87C /* PlayView.m */; };
+		F1C886A91D976EED00E5F87C /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886A81D976EED00E5F87C /* PlayerViewController.m */; };
+		F1C886AC1D977DB300E5F87C /* ViedoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886AB1D977DB300E5F87C /* ViedoModel.m */; };
+		F1C886AF1D9780E800E5F87C /* VideoNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886AE1D9780E800E5F87C /* VideoNetManager.m */; };
+		F1C886B21D978B2600E5F87C /* VideoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886B11D978B2600E5F87C /* VideoViewModel.m */; };
+		F1C886B91D97C3C600E5F87C /* CommentVideo1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886B71D97C3C600E5F87C /* CommentVideo1Cell.m */; };
+		F1C886BA1D97C3C600E5F87C /* CommentVideo1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1C886B81D97C3C600E5F87C /* CommentVideo1Cell.xib */; };
+		F1C886BD1D97EF6700E5F87C /* PictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C886BC1D97EF6700E5F87C /* PictureView.m */; };
 		F1DDBEF51D9407C100651183 /* AdsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DDBEF41D9407C100651183 /* AdsViewController.m */; };
 		F1DDBEF91D94127100651183 /* AdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DDBEF81D94127100651183 /* AdsModel.m */; };
 		F1DDBEFD1D94174500651183 /* AdsNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DDBEFC1D94174500651183 /* AdsNetManager.m */; };
@@ -132,6 +142,25 @@
 		F1C1BB1B1D90F59200014FE4 /* OnePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePictureCell.m; sourceTree = "<group>"; };
 		F1C1BB1D1D90F5A900014FE4 /* ThreePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreePictureCell.h; sourceTree = "<group>"; };
 		F1C1BB1E1D90F5A900014FE4 /* ThreePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreePictureCell.m; sourceTree = "<group>"; };
+		F1C886991D974E4500E5F87C /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
+		F1C8869A1D974E4500E5F87C /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
+		F1C886A11D976EA600E5F87C /* VideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerController.h; sourceTree = "<group>"; };
+		F1C886A21D976EA600E5F87C /* VideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerController.m; sourceTree = "<group>"; };
+		F1C886A41D976EBA00E5F87C /* PlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayView.h; sourceTree = "<group>"; };
+		F1C886A51D976EBA00E5F87C /* PlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayView.m; sourceTree = "<group>"; };
+		F1C886A71D976EED00E5F87C /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		F1C886A81D976EED00E5F87C /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		F1C886AA1D977DB300E5F87C /* ViedoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViedoModel.h; sourceTree = "<group>"; };
+		F1C886AB1D977DB300E5F87C /* ViedoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViedoModel.m; sourceTree = "<group>"; };
+		F1C886AD1D9780E800E5F87C /* VideoNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoNetManager.h; sourceTree = "<group>"; };
+		F1C886AE1D9780E800E5F87C /* VideoNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoNetManager.m; sourceTree = "<group>"; };
+		F1C886B01D978B2600E5F87C /* VideoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoViewModel.h; path = ../HeadLine/VideoViewModel.h; sourceTree = "<group>"; };
+		F1C886B11D978B2600E5F87C /* VideoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoViewModel.m; path = ../HeadLine/VideoViewModel.m; sourceTree = "<group>"; };
+		F1C886B61D97C3C600E5F87C /* CommentVideo1Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentVideo1Cell.h; sourceTree = "<group>"; };
+		F1C886B71D97C3C600E5F87C /* CommentVideo1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentVideo1Cell.m; sourceTree = "<group>"; };
+		F1C886B81D97C3C600E5F87C /* CommentVideo1Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentVideo1Cell.xib; sourceTree = "<group>"; };
+		F1C886BB1D97EF6700E5F87C /* PictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureView.h; sourceTree = "<group>"; };
+		F1C886BC1D97EF6700E5F87C /* PictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureView.m; sourceTree = "<group>"; };
 		F1DDBEF31D9407C100651183 /* AdsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsViewController.h; sourceTree = "<group>"; };
 		F1DDBEF41D9407C100651183 /* AdsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsViewController.m; sourceTree = "<group>"; };
 		F1DDBEF71D94127100651183 /* AdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsModel.h; sourceTree = "<group>"; };
@@ -370,6 +399,8 @@
 			children = (
 				F11346911D8EB416002F3E93 /* LineRadioViewController.h */,
 				F11346921D8EB416002F3E93 /* LineRadioViewController.m */,
+				F1C886A71D976EED00E5F87C /* PlayerViewController.h */,
+				F1C886A81D976EED00E5F87C /* PlayerViewController.m */,
 			);
 			path = LinwRadio;
 			sourceTree = "<group>";
@@ -414,6 +445,12 @@
 			children = (
 				F11346AC1D8ED112002F3E93 /* ScrollDisplayViewController.h */,
 				F11346AD1D8ED112002F3E93 /* ScrollDisplayViewController.m */,
+				F1C886991D974E4500E5F87C /* ShowViewController.h */,
+				F1C8869A1D974E4500E5F87C /* ShowViewController.m */,
+				F1C886A41D976EBA00E5F87C /* PlayView.h */,
+				F1C886A51D976EBA00E5F87C /* PlayView.m */,
+				F1C886A11D976EA600E5F87C /* VideoPlayerController.h */,
+				F1C886A21D976EA600E5F87C /* VideoPlayerController.m */,
 			);
 			path = ScrollDisplay;
 			sourceTree = "<group>";
@@ -532,6 +569,11 @@
 			children = (
 				F1F17F111D969CED00BCEE5A /* LineCell.h */,
 				F1F17F121D969CED00BCEE5A /* LineCell.m */,
+				F1C886B61D97C3C600E5F87C /* CommentVideo1Cell.h */,
+				F1C886B71D97C3C600E5F87C /* CommentVideo1Cell.m */,
+				F1C886B81D97C3C600E5F87C /* CommentVideo1Cell.xib */,
+				F1C886BB1D97EF6700E5F87C /* PictureView.h */,
+				F1C886BC1D97EF6700E5F87C /* PictureView.m */,
 			);
 			path = LineRadio;
 			sourceTree = "<group>";
@@ -541,6 +583,8 @@
 			children = (
 				F1F17F151D96A14100BCEE5A /* HeadRadioModel.h */,
 				F1F17F161D96A14100BCEE5A /* HeadRadioModel.m */,
+				F1C886AA1D977DB300E5F87C /* ViedoModel.h */,
+				F1C886AB1D977DB300E5F87C /* ViedoModel.m */,
 			);
 			path = HeadRadio;
 			sourceTree = "<group>";
@@ -550,6 +594,8 @@
 			children = (
 				F1F17F1D1D96A75D00BCEE5A /* LiveRadioViewModel.h */,
 				F1F17F1E1D96A75D00BCEE5A /* LiveRadioViewModel.m */,
+				F1C886B01D978B2600E5F87C /* VideoViewModel.h */,
+				F1C886B11D978B2600E5F87C /* VideoViewModel.m */,
 			);
 			path = LiveRadio;
 			sourceTree = "<group>";
@@ -559,6 +605,8 @@
 			children = (
 				F1F17F1A1D96A35700BCEE5A /* LiveRadioNetManager.h */,
 				F1F17F1B1D96A35700BCEE5A /* LiveRadioNetManager.m */,
+				F1C886AD1D9780E800E5F87C /* VideoNetManager.h */,
+				F1C886AE1D9780E800E5F87C /* VideoNetManager.m */,
 			);
 			path = LiveRadioNetWork;
 			sourceTree = "<group>";
@@ -657,6 +705,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1C886BA1D97C3C600E5F87C /* CommentVideo1Cell.xib in Resources */,
 				F1F311D71D94B41500C3401D /* AdsdetailView.xib in Resources */,
 				F1F311D91D94CA6F00C3401D /* InputText.xib in Resources */,
 				F1098A141D957D6600114810 /* DetailCell.xib in Resources */,
@@ -723,8 +772,10 @@
 			files = (
 				F1F17F131D969CED00BCEE5A /* LineCell.m in Sources */,
 				F11346AA1D8ECC9C002F3E93 /* NewsModel.m in Sources */,
+				F1C886A31D976EA600E5F87C /* VideoPlayerController.m in Sources */,
 				F113468F1D8EB40C002F3E93 /* UIView+Extension.m in Sources */,
 				3886C0BE1BD74AFE0014E661 /* BaseNetManager.m in Sources */,
+				F1C886B91D97C3C600E5F87C /* CommentVideo1Cell.m in Sources */,
 				3804CE541BD758F10046C8C8 /* NSString+QRCode.m in Sources */,
 				F113469D1D8EB416002F3E93 /* LineRadioViewController.m in Sources */,
 				F11346A31D8EBD86002F3E93 /* YLTabBarController.m in Sources */,
@@ -732,9 +783,12 @@
 				3886C09B1BD748830014E661 /* AppDelegate.m in Sources */,
 				F1098A131D957D6600114810 /* DetailCell.m in Sources */,
 				F1DDBEFD1D94174500651183 /* AdsNetManager.m in Sources */,
+				F1C8869C1D974E4500E5F87C /* ShowViewController.m in Sources */,
 				F113469F1D8EB416002F3E93 /* NewsViewController.m in Sources */,
 				F15472441D90208C0099D09A /* MeViewController.m in Sources */,
 				F1F311E01D94EB2100C3401D /* GDataXMLNode.m in Sources */,
+				F1C886AC1D977DB300E5F87C /* ViedoModel.m in Sources */,
+				F1C886AF1D9780E800E5F87C /* VideoNetManager.m in Sources */,
 				F136D0D41D92BD69009AAFF7 /* AddViewController.m in Sources */,
 				F1C1BB191D90F57000014FE4 /* NormalCell.m in Sources */,
 				F11346AE1D8ED112002F3E93 /* ScrollDisplayViewController.m in Sources */,
@@ -748,6 +802,8 @@
 				F1F311E51D94F5A600C3401D /* NormalAdsModel.m in Sources */,
 				F1DDBEF91D94127100651183 /* AdsModel.m in Sources */,
 				F1F17F1F1D96A75D00BCEE5A /* LiveRadioViewModel.m in Sources */,
+				F1C886B21D978B2600E5F87C /* VideoViewModel.m in Sources */,
+				F1C886A91D976EED00E5F87C /* PlayerViewController.m in Sources */,
 				F11346A01D8EB416002F3E93 /* TopicViewController.m in Sources */,
 				F1C1BB1C1D90F59200014FE4 /* OnePictureCell.m in Sources */,
 				F11346A61D8EBD91002F3E93 /* YLNavigationController.m in Sources */,
@@ -757,11 +813,13 @@
 				F1DDBF011D941B2400651183 /* AdsViewModel.m in Sources */,
 				3886C0C11BD74B090014E661 /* BaseModel.m in Sources */,
 				F15472401D9014C30099D09A /* HeadLineViewModel.m in Sources */,
+				F1C886A61D976EBA00E5F87C /* PlayView.m in Sources */,
 				F154723C1D9014570099D09A /* HeadLineViewController.m in Sources */,
 				F1F17F0C1D964DF400BCEE5A /* DetailNormalViewController.m in Sources */,
 				3886C0981BD748830014E661 /* main.m in Sources */,
 				F1F17F1C1D96A35700BCEE5A /* LiveRadioNetManager.m in Sources */,
 				F136CFF91D924281009AAFF7 /* OtherNormalModel.m in Sources */,
+				F1C886BD1D97EF6700E5F87C /* PictureView.m in Sources */,
 				F1DDBEF51D9407C100651183 /* AdsViewController.m in Sources */,
 				3804CE521BD758F10046C8C8 /* NSObject+Common.m in Sources */,
 				F1E415271D8FAD9300C57E97 /* NewsNetManager.m in Sources */,

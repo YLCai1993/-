@@ -39,6 +39,9 @@
 //传入视图控制器
 -(instancetype)initWithViewControllers:(NSArray *)controllers;
 
+//传入视图控制器的滚动方向
+@property(nonatomic,assign)NSInteger diration;
+
 @property(nonatomic,strong)NSArray *paths;
 @property(nonatomic,strong)NSArray *names;
 @property(nonatomic,strong)NSArray *controllers;

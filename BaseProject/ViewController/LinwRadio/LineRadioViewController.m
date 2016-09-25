@@ -9,7 +9,9 @@
 #import "LineRadioViewController.h"
 #import "LiveRadioViewModel.h"
 #import "ScrollDisplayViewController.h"
+#import "ShowViewController.h"
 #import <UIImageView+WebCache.h>
+#import "PlayerViewController.h"
 #import "LineCell.h"
 
 @interface LineRadioViewController ()<UITableViewDelegate,UITableViewDataSource,scrollDisplayViewControllerDelegate>
@@ -19,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)LiveRadioViewModel *lrVM;
 @property(nonatomic,strong)ScrollDisplayViewController *sdVC;
+@property(nonatomic,assign)NSInteger tag;
 
 @end
 
@@ -79,35 +82,125 @@
 
 #pragma mark - UITableViewDelegate
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 //    NSLog(@"number:%ld",self.lrVM.getRowNumber);
+    if (section == 0) {
+        return 1;
+    }
     return self.lrVM.getRowNumber;
 }
 
-#warning 写到这里还有分组头没有写
+-(NSArray *)getViewControllersForNumber:(NSInteger )number{
+    NSMutableArray *allVC = [NSMutableArray new];
+    [allVC removeAllObjects];
+    for (NSInteger i = 0; i<number; i++) {
+        ShowViewController *sVC = [[ShowViewController alloc] init];
+        sVC.message = [NSString stringWithFormat:@"%@",[self.lrVM getFutureTitleForRow:i]];
+        [allVC addObject:sVC];
+    }
+    return [allVC copy];
+}
+
+-(UIView *)getShowView{
+    if (self.tag > 0) {
+        NSInteger number = [self.lrVM getFutureNumber];
+        ScrollDisplayViewController *sdVC = [[ScrollDisplayViewController alloc] initWithViewControllers:[self getViewControllersForNumber:number]];
+        sdVC.canCycle = YES;
+        sdVC.autoCycle = YES;
+        sdVC.showPageControl = NO;
+        sdVC.delegate = self;
+        sdVC.diration = 1;
+        sdVC.duration = 3;
+        sdVC.view.frame = CGRectMake(58, 10, self.view.width-120, 35);
+        return sdVC.view;
+       
+    }else{
+        self.tag ++;
+        return nil;
+    }
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell5"];
-    [cell.backGroundButton sd_setImageWithURL:[NSURL URLWithString:[self.lrVM getImagesForRow:indexPath.row]]];
-    cell.titleLabel.text = [self.lrVM getTitleForRow:indexPath.row];
-    cell.apartiment.text = [self.lrVM watchingPeopleForRow:indexPath.row];
-    BOOL zhibo = [self.lrVM isOnlineForRow:indexPath.row];
-    if (zhibo) {
-        cell.zhiBoButton.text = @"直播";
-        cell.zhiBoButton.backgroundColor = [UIColor redColor];
+    if (indexPath.section == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UIView *view = [cell viewWithTag:100];
+        if (view == nil) {
+            view = [self getShowView];
+            view.tag =100;
+          [cell.contentView addSubview:view];
+        }
+        
+        UILabel *label = [cell viewWithTag:101];
+        if (label == nil) {
+           label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 45, 35)];
+            label.text = @"预告 / ";
+            label.textColor = [UIColor colorWithRed:43/255.0 green:101/255.0 blue:187/255.0 alpha:1];
+            label.tag = 101;
+            [cell.contentView addSubview:label];
+        }
+        
+        UILabel *label1 = [cell viewWithTag:102];
+        if (label1 == nil) {
+            label1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width-60, 18, 20, 20)];
+//            NSLog(@"%ld",[self.lrVM getFutureNumber]);
+            label1.text = [NSString stringWithFormat:@"%ld",[self.lrVM getFutureNumber]];
+            label1.font = [UIFont systemFontOfSize:13];
+            label1.textColor = [UIColor redColor];
+            label1.tag = 102;
+            [cell.contentView addSubview:label1];
+        }
+        UILabel *label3 = [cell viewWithTag:103];
+        if (label3 == nil) {
+            label3 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width-40, 18, 15, 20)];
+            label3.text = @"场";
+            label3.font = [UIFont systemFontOfSize:13];
+            label3.textColor = [UIColor grayColor];
+            label3.tag = 103;
+            [cell.contentView addSubview:label3];
+        }
+         return cell;
     }else{
-        cell.zhiBoButton.backgroundColor = [UIColor grayColor];
-        cell.zhiBoButton.text = @"回顾";
+        LineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell5"];
+        [cell.backGroundButton sd_setImageWithURL:[NSURL URLWithString:[self.lrVM getImagesForRow:indexPath.row]]];
+        cell.titleLabel.text = [self.lrVM getTitleForRow:indexPath.row];
+        cell.apartiment.text = [self.lrVM watchingPeopleForRow:indexPath.row];
+        BOOL zhibo = [self.lrVM isOnlineForRow:indexPath.row];
+        if (zhibo) {
+            cell.zhiBoButton.text = @"直播";
+            cell.zhiBoButton.backgroundColor = [UIColor redColor];
+        }else{
+            cell.zhiBoButton.backgroundColor = [UIColor grayColor];
+            cell.zhiBoButton.text = @"回顾";
+        }
+        return cell;
     }
-    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 55;
+    }
     return 150;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 55;
+    return 0;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PlayerViewController *vc = [[PlayerViewController alloc] init];
+    vc.roomID = [self.lrVM getRoomIDForRow:indexPath.row];
+    vc.isZhiBo = [self.lrVM isOnlineForRow:indexPath.row];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 #pragma mark - scrollDisplayViewControllerDelegate
 -(void)scrollDisplayViewController:(ScrollDisplayViewController *)scrollDisplayViewController didSelectedIndex:(NSInteger)index{

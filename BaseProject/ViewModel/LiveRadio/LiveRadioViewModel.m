@@ -69,6 +69,23 @@
     return model.image;
 }
 
+-(NSInteger )getFutureNumber{
+    NSArray *arr = self.model.future;
+    return arr.count;
+}
+-(NSString *)getFutureTitleForRow:(NSInteger )row{
+    NSArray *arr = self.model.future;
+    HeadFutureModel *model = arr[row];
+    return model.roomName;
+}
+
+-(NSString *)getRoomIDForRow:(NSInteger)row{
+    NSArray *arr = self.model.review;
+    HeadLiveReviewModel *model = arr[row];
+    NSString *roomID = [NSString stringWithFormat:@"%.0lf",model.roomId];
+    return roomID;
+}
+
 -(void)refreshDateCompleteHandle:(void(^)(NSError *))complete{
     [LiveRadioNetManager getRadioListFromType:nil completeHandle:^(HeadRadioModel *model, NSError *error) {
         self.model = model;

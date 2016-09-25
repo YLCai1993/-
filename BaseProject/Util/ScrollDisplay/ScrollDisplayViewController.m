@@ -196,7 +196,7 @@
     if (!_controllers || _controllers.count == 0) {
         return;
     }
-    _pageVC = [[UIPageViewController alloc] initWithTransitionStyle:1 navigationOrientation:0 options:nil];
+    _pageVC = [[UIPageViewController alloc] initWithTransitionStyle:1 navigationOrientation:_diration options:nil];
     _pageVC.delegate = self;
     _pageVC.dataSource = self;
     [self addChildViewController:_pageVC];

@@ -17,7 +17,10 @@
 -(NSArray *)getHeadURl;
 -(NSArray *)getDetail;
 -(NSInteger )getRowNumber;
+-(NSInteger )getFutureNumber;
+-(NSString *)getFutureTitleForRow:(NSInteger )row;
 -(BOOL)isOnlineForRow:(NSInteger)row;
+-(NSString *)getRoomIDForRow:(NSInteger)row;
 -(NSString *)getTitleForRow:(NSInteger)row;
 -(NSString *)watchingPeopleForRow:(NSInteger)row;
 -(NSString *)getImagesForRow:(NSInteger )row;

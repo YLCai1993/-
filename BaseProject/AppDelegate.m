@@ -11,6 +11,7 @@
 #import "HeadLineViewModel.h"
 #import "AdsNetManager.h"
 #import "LiveRadioNetManager.h"
+#import "VideoNetManager.h"
 #import "Global.h"
 
 @interface AppDelegate ()
@@ -53,6 +54,10 @@
 //        NSLog(@"***");
 //    }];
 //    [self initializeWithApplication:application];
+//    [VideoNetManager getRadioFromRoomID:@"97402" completeHandle:^(ViedoModel *model, NSError *error) {
+//       
+//        NSLog(@"***");
+//    }];
     return YES;
 }
 
