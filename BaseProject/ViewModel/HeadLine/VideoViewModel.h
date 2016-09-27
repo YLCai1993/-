@@ -23,6 +23,10 @@
 -(NSString *)getContentForRow:(NSInteger)section;
 -(NSInteger )cellHeightForSection:(NSInteger)section;
 -(NSArray *)contentPictureForSection:(NSInteger )section;
--(void)getVideoDataCompleteHandle:(void(^)(NSError *error))complete;
+
+-(void)getdataCompleteHandle:(void(^)(NSError *error))complete;
+-(void)getMoreDataCompleteHandle:(void(^)(NSError *error))complete;
+
+
 
 @end

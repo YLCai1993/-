@@ -132,7 +132,9 @@
             TidNewsModel *tid = model.tid[0];
             self.headImageURL =tid.ads;
 //            NSLog(@"count:%ld",self.headImageURL.count);
-            [self.dataArr removeObjectAtIndex:0];
+            if (self.dataArr.count != 0) {
+              [self.dataArr removeObjectAtIndex:0];
+            }
             complete(error);
         }];
     }else{
@@ -149,7 +151,9 @@
                 ads1.url = ttt.photosetID;
                 self.headImageURL = @[ads1];
             }
-            [self.dataArr removeObjectAtIndex:0];
+            if (self.dataArr.count != 0) {
+                [self.dataArr removeObjectAtIndex:0];
+            }
             complete(error);
         }];
     }

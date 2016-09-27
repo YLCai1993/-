@@ -71,6 +71,7 @@
 
 -(NSInteger )getFutureNumber{
     NSArray *arr = self.model.future;
+//    NSLog(@"***%ld",self.model.future.count);
     return arr.count;
 }
 -(NSString *)getFutureTitleForRow:(NSInteger )row{
@@ -84,6 +85,10 @@
     HeadLiveReviewModel *model = arr[row];
     NSString *roomID = [NSString stringWithFormat:@"%.0lf",model.roomId];
     return roomID;
+}
+
+-(NSArray *)getFutureData{
+    return self.model.future;
 }
 
 -(void)refreshDateCompleteHandle:(void(^)(NSError *))complete{

@@ -24,7 +24,7 @@
 -(NSString *)getTitleForRow:(NSInteger)row;
 -(NSString *)watchingPeopleForRow:(NSInteger)row;
 -(NSString *)getImagesForRow:(NSInteger )row;
-
+-(NSArray *)getFutureData;
 -(void)refreshDateCompleteHandle:(void(^)(NSError *))complete;
 
 @end

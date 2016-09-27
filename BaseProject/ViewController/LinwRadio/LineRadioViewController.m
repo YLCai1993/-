@@ -12,20 +12,31 @@
 #import "ShowViewController.h"
 #import <UIImageView+WebCache.h>
 #import "PlayerViewController.h"
+#import "FutureViewController.h"
+#import "ClassViewController.h"
 #import "LineCell.h"
 
-@interface LineRadioViewController ()<UITableViewDelegate,UITableViewDataSource,scrollDisplayViewControllerDelegate>
+@interface LineRadioViewController ()<UITableViewDelegate,UITableViewDataSource,scrollDisplayViewControllerDelegate,classViewControllerDelegate>
 
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)LiveRadioViewModel *lrVM;
 @property(nonatomic,strong)ScrollDisplayViewController *sdVC;
 @property(nonatomic,assign)NSInteger tag;
+@property(nonatomic,assign)NSInteger gestureTag;
+@property(nonatomic,strong)ClassViewController *classVC;
 
 @end
 
 @implementation LineRadioViewController
+
+-(ClassViewController *)classVC{
+    if (!_classVC) {
+        _classVC = [[ClassViewController alloc] init];
+        _classVC.delegate = self;
+    }
+    return _classVC;
+}
+
 -(LiveRadioViewModel *)lrVM{
     if (!_lrVM) {
         _lrVM= [[LiveRadioViewModel alloc] initWithType:nil];
@@ -41,13 +52,51 @@
 }
 
 
+- (IBAction)didSelected:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+        case 0:{
+            //获取数据
+            [self getData];
+            for(UIView *view in [self.view subviews])
+            {
+                view.hidden = NO;
+            }
+            self.classVC.view.hidden = YES;
+        }
+          break;
+        case 1:{
+            for(UIView *view in [self.view subviews])
+            {
+                view.hidden = YES;
+            }
+            if (self.gestureTag == 0) {
+              [self.view addSubview:self.classVC.view];
+                self.gestureTag++;
+            }else{
+               self.classVC.view.hidden = NO;
+            }
+            self.classVC.view.backgroundColor = [UIColor greenColor];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    //获取数据
     [self getData];
+    self.segment.selectedSegmentIndex = 0;
+    self.segment.layer.cornerRadius = 15;
     
-   
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeToClass)];
+    swipe.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.tableView addGestureRecognizer:swipe];
+}
+-(void)changeToClass{
+    self.segment.selectedSegmentIndex = 1;
+    [self didSelected:self.segment];
 }
 
 -(void)getData{
@@ -151,12 +200,12 @@
         if (label1 == nil) {
             label1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width-60, 18, 20, 20)];
 //            NSLog(@"%ld",[self.lrVM getFutureNumber]);
-            label1.text = [NSString stringWithFormat:@"%ld",[self.lrVM getFutureNumber]];
             label1.font = [UIFont systemFontOfSize:13];
             label1.textColor = [UIColor redColor];
             label1.tag = 102;
             [cell.contentView addSubview:label1];
         }
+        label1.text = [NSString stringWithFormat:@"%ld",[self.lrVM getFutureNumber]];
         UILabel *label3 = [cell viewWithTag:103];
         if (label3 == nil) {
             label3 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.width-40, 18, 15, 20)];
@@ -184,6 +233,7 @@
     }
 }
 
+#pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return 55;
@@ -197,14 +247,28 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    PlayerViewController *vc = [[PlayerViewController alloc] init];
-    vc.roomID = [self.lrVM getRoomIDForRow:indexPath.row];
-    vc.isZhiBo = [self.lrVM isOnlineForRow:indexPath.row];
-    [self presentViewController:vc animated:YES completion:nil];
+    if (indexPath.section == 0) {
+        FutureViewController *vc = [[FutureViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.futureLineRadios = [self.lrVM getFutureData];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        PlayerViewController *vc = [[PlayerViewController alloc] init];
+        vc.roomID = [self.lrVM getRoomIDForRow:indexPath.row];
+        vc.isZhiBo = [self.lrVM isOnlineForRow:indexPath.row];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+   
 }
 #pragma mark - scrollDisplayViewControllerDelegate
 -(void)scrollDisplayViewController:(ScrollDisplayViewController *)scrollDisplayViewController didSelectedIndex:(NSInteger)index{
     NSLog(@"点击了第%ld张图片",index);
+}
+
+#pragma mark - classViewControllerDelegate
+-(void)classViewController:(ClassViewController *)ClassViewController sendIndex:(NSInteger)index{
+    self.segment.selectedSegmentIndex = index;
+    [self didSelected:self.segment];
 }
 @end
 

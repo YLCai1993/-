@@ -12,6 +12,7 @@
 #import <UIButton+WebCache.h>
 #import <UIImageView+WebCache.h>
 #import "VideoViewModel.h"
+#import "PictureView.h"
 
 #define buttonW 50
 
@@ -48,9 +49,15 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"CommentVideo1Cell" bundle:nil] forCellReuseIdentifier:@"cell6"];
     
     [self.view addSubview:self.tableView];
+    NSString *videoURL = [self.vVM getURL];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(270);
+        if (videoURL == nil) {
+            make.top.mas_equalTo(160);
+        }else{
+            make.top.mas_equalTo(270);
+        }
+        
     }];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -59,12 +66,17 @@
     /*  获取数据  */
     [self getData];
     [self configBannerView];
-    
-    
 }
 
 -(void)configBannerView{
-    UIView *bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 230, self.view.width, 40)];
+    NSString *videoURL = [self.vVM getURL];
+    UIView *bannerView = [[UIView alloc] init];
+        if (videoURL == nil) {
+            bannerView.frame = CGRectMake(0, 120, self.view.width, 40);
+        }else{
+             bannerView.frame = CGRectMake(0, 230, self.view.width, 40);
+        }
+
     bannerView.backgroundColor = [UIColor whiteColor];
     self.bannerView = bannerView;
     [self.view addSubview:bannerView];
@@ -98,26 +110,46 @@
 }
 
 -(void)getData{
-    [self.vVM getVideoDataCompleteHandle:^(NSError *error) {
+    
+    [self.vVM getdataCompleteHandle:^(NSError *error) {
         [_tableView reloadData];
         /* 播放视频 */
         [self playerVideo];
     }];
+        _tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self.vVM getMoreDataCompleteHandle:^(NSError *error) {
+            [_tableView.footer endRefreshing];
+            [_tableView reloadData];
+        }];
+    }];    
 }
 
 -(void)playerVideo{
-    
-    [self playVideoWithURl:[NSURL URLWithString:[self.vVM getURL]]];
-    [self.view addSubview:self.videoController.view];
     
     UIButton *button = [UIButton buttonWithType:0];
     [button setBackgroundImage:[UIImage imageNamed:@"icon_back_highlighted"] forState:UIControlStateNormal];
     button.layer.cornerRadius = 22;
     [button bk_addEventHandler:^(id sender) {
+        [self.videoController dismiss];
         [self dismissViewControllerAnimated:YES completion:nil];
     } forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0, 10, 50, 45);
-    [self.videoController.view addSubview:button];
+
+    
+    NSString *videoURL = [self.vVM getURL];
+    if (videoURL != nil) {
+        [self playVideoWithURl:[NSURL URLWithString:[self.vVM getURL]]];
+        [self.view addSubview:self.videoController.view];
+         [self.videoController.view addSubview:button];
+    }else{
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 120)];
+        imageView.backgroundColor = [UIColor redColor];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageURL] placeholderImage:[UIImage imageNamed:@"contentview_imagebg_logo"]];
+        [self.view addSubview:imageView];
+        imageView.userInteractionEnabled = YES;
+        [imageView addSubview:button];
+    }
+   
 
 }
 
@@ -157,24 +189,102 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentVideo1Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell6"];
-//    [cell.headButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[self.vVM getHeadImagURLForRow:indexPath.section] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"error"]]];
-    [cell.headButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[self.vVM getHeadImagURLForRow:indexPath.section]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"error"]];
+    [cell.headButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[self.vVM getHeadImagURLForRow:indexPath.section]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"contentview_pkbutton_red"]];
     cell.name.text = [self.vVM getTitleForRow:indexPath.section];
     cell.content.text = [self.vVM getContentForRow:indexPath.section];
     NSArray *images = [self.vVM contentPictureForSection:indexPath.section];
-//    NSLog(@"imageCount:%ld section:%ld",images.count,indexPath.section);
+    NSMutableArray *asd = [NSMutableArray new];
+    for (VideoMessageImagesModel *Model in images) {
+        NSString *str = Model.fullSizeSrc;
+        [asd addObject:str];
+    }
+    if (images == nil) {
+       cell.BigImage.hidden = YES;
+    }
+    
+    switch (images.count) {
+        case 0:
+            cell.threeBgView.hidden = YES;
+            cell.twoBgView.hidden = YES;
+            cell.bgView.hidden = YES;
+            cell.BigImage.hidden = YES;
+            break;
+        case 1:{
+            cell.threeBgView.hidden = YES;
+            cell.twoBgView.hidden = YES;
+            cell.bgView.hidden = YES;
+            cell.BigImage.hidden = NO;
+            VideoMessageImagesModel *imageModel = images[0];
+            [cell.BigImage sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+        }
+            break;
+        case 2:{
+            cell.threeBgView.hidden = YES;
+            cell.twoBgView.hidden = NO;
+            cell.bgView.hidden = YES;
+            cell.BigImage.hidden = YES;
+            VideoMessageImagesModel *imageModel = images[0];
+            [cell.twoOnePic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+            imageModel = images[1];
+            [cell.twoTwoPic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+        }
+            break;
+        case 3:{
+            cell.threeBgView.hidden = NO;
+            cell.twoBgView.hidden = YES;
+            cell.bgView.hidden = YES;
+            cell.BigImage.hidden = YES;
+            VideoMessageImagesModel *imageModel = images[0];
+            [cell.threeOnePic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+            imageModel = images[1];
+            [cell.threeTwoPic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+            imageModel = images[2];
+            [cell.threeThreePic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+        }
+            break;
+        case 4:{
+            cell.threeBgView.hidden = YES;
+            cell.twoBgView.hidden = YES;
+            cell.bgView.hidden = NO;
+            cell.BigImage.hidden = YES;
+            VideoMessageImagesModel *imageModel = images[0];
+            [cell.onePic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+            imageModel = images[1];
+            [cell.twoPic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+            imageModel = images[2];
+            [cell.threePic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+            imageModel = images[3];
+            [cell.fourPic sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+        }
+            break;
+        default:
+            break;
+    }
+    
     if (images.count == 0 || images == nil) {
         cell.BigImage.hidden = YES;
-    }else{
+    }else if(images.count == 1){
         cell.BigImage.hidden = NO;
         VideoMessageImagesModel *imageModel = images[0];
         [cell.BigImage sd_setImageWithURL:[NSURL URLWithString:imageModel.fullSizeSrc] placeholderImage:[UIImage imageNamed:@"contentview_hd_loading_logo"]];
+        /*
+        if (images.count<=4) {
+            PictureView *pic = [PictureView new];
+            pic.imagesURL = asd;
+            [cell.bgView addSubview:pic];
+            NSLog(@"cellheight:%lf",cell.bgView.height);
+        }
+         */
     }
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [self.vVM cellHeightForSection:indexPath.section];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end
 

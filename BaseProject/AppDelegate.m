@@ -7,12 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#import "MobClick.h"
 #import "AppDelegate+Category.h"
 #import "HeadLineViewModel.h"
 #import "AdsNetManager.h"
 #import "LiveRadioNetManager.h"
 #import "VideoNetManager.h"
+#import "ClassVideNetManager.h"
 #import "Global.h"
+
+
+#define AppKey @"57e0f5e7e0f55a69b5000273"
+
 
 @interface AppDelegate ()
 
@@ -21,6 +27,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    /*  友盟统计注册  */
+    [MobClick startWithAppkey:AppKey reportPolicy:BATCH channelId:nil];
+    
 //    [NewsNetManager getNewsListForm:NewsListTypeTouTiao fn:1 offset:0 size:30 completeHandle:^(NewsModel *model, NSError *error) {
 //       
 //        NSLog(@"**");
@@ -57,7 +66,19 @@
 //    [VideoNetManager getRadioFromRoomID:@"97402" completeHandle:^(ViedoModel *model, NSError *error) {
 //       
 //        NSLog(@"***");
+//    }];z
+    
+    
+//    [ClassVideNetManager getClassfiyFormType:nil completeHandle:^(ClassModel *model, NSError *err) {
+//       
+//        NSLog(@"***");
 //    }];
+    
+//    [ClassVideNetManager getClassItemFromID:4 andPage:1 completeHandle:^(HeadRadioModel *model, NSError *err) {
+//       
+//        NSLog(@"你好");
+//    }];
+    
     return YES;
 }
 

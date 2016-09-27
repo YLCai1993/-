@@ -10,6 +10,7 @@
 
 @interface LineRadioViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 
-
+- (IBAction)didSelected:(UISegmentedControl *)sender ;
 @end

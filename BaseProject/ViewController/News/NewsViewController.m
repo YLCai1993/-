@@ -34,6 +34,11 @@
 
 @implementation NewsViewController
 
+- (IBAction)changeToOnLineRadio:(UIBarButtonItem *)sender {
+    self.tabBarController.selectedIndex = 1;
+}
+
+
 -(NSMutableArray *)classModels{
     if (!_classModels) {
         _classModels = [NSMutableArray new];

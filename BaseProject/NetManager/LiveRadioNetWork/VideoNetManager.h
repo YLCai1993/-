@@ -11,6 +11,6 @@
 
 @interface VideoNetManager : BaseNetManager
 
-+(id)getRadioFromRoomID:(NSString *)roomID completeHandle:(void(^)(ViedoModel *model,NSError *error))completeHandle;
++(id)getRadioFromRoomID:(NSString *)roomID andPage:(NSInteger )page completeHandle:(void(^)(ViedoModel *model,NSError *error))completeHandle;
 
 @end

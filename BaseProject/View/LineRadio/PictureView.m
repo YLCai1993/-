@@ -37,6 +37,7 @@
     }
 }
 -(void)setOneImage:(NSArray *)imageURL{
+//    NSLog(@"**%@",imageURL[0]);
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 245)];
     [imageView sd_setImageWithURL:[NSURL URLWithString:imageURL[0]] placeholderImage:[UIImage imageNamed:@"angle-mask@3x"]];
     [self addSubview:imageView];

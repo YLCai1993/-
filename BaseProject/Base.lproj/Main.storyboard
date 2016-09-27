@@ -22,6 +22,9 @@
                     <navigationItem key="navigationItem" id="RwP-jy-G2w">
                         <barButtonItem key="leftBarButtonItem" title="直播" id="Nm3-hV-iNk">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="changeToOnLineRadio:" destination="viW-En-uw2" id="gTN-6x-hVz"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="search_icon" id="svJ-h7-74X">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,6 +129,9 @@
                                 <segment title="分类"/>
                             </segments>
                             <color key="tintColor" red="0.9309808611869812" green="0.28297129273414612" blue="0.18571358919143677" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="didSelected:" destination="UPl-K4-eOV" eventType="valueChanged" id="mFn-cz-4X3"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -468,12 +474,31 @@
                         <viewControllerLayoutGuide type="bottom" id="lvb-wy-rHh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jGM-H4-K3E">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iay-tf-1Sg"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationItem key="navigationItem" id="iay-tf-1Sg">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="GHh-52-vmo">
+                            <rect key="frame" x="97" y="7" width="182" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <segments>
+                                <segment title="问吧"/>
+                                <segment title="话题"/>
+                                <segment title="关注"/>
+                            </segments>
+                            <color key="tintColor" red="0.9309808611869812" green="0.28297129273414612" blue="0.18571358919143677" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="changeView:" destination="WWv-5R-poH" eventType="valueChanged" id="oV6-Mt-B6d"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="segment" destination="GHh-52-vmo" id="Pwq-dv-tKS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7N-Gj-sP0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

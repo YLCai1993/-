@@ -18,7 +18,28 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *BigImage;
 
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *onePic;
 
+@property (weak, nonatomic) IBOutlet UIImageView *twoPic;
+
+@property (weak, nonatomic) IBOutlet UIImageView *threePic;
+
+@property (weak, nonatomic) IBOutlet UIImageView *fourPic;
+
+@property (weak, nonatomic) IBOutlet UIView *twoBgView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *twoOnePic;
+
+@property (weak, nonatomic) IBOutlet UIImageView *twoTwoPic;
+
+@property (weak, nonatomic) IBOutlet UIView *threeBgView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *threeOnePic;
+
+@property (weak, nonatomic) IBOutlet UIImageView *threeTwoPic;
+
+@property (weak, nonatomic) IBOutlet UIImageView *threeThreePic;
 
 @end
